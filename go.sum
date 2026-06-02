@@ -1,2 +1,4 @@
+github.com/fluxplane/fluxplane-datasource v0.1.0 h1:fmQPLfScLC4Tn32TDT4pdRItL3D6m3PxgV/wsMAyKHk=
+github.com/fluxplane/fluxplane-datasource v0.1.0/go.mod h1:bBFUhZZ9ERD2k6efNF+HtUlbR+Cy6k5xbwzKkgF7q3g=
 github.com/fluxplane/fluxplane-event v0.1.0 h1:0SAx3OpuixskvESUzaCx97kZz2wqodrDmukrCN2wX0Y=
 github.com/fluxplane/fluxplane-event v0.1.0/go.mod h1:CYcx/cf6JBZ4nuo/1SBDVEQk+hz55yXlaU3paegSS+o=

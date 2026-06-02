@@ -28,27 +28,30 @@ const (
 	IdempotencyUnknown       Idempotency = ""
 	IdempotencyIdempotent    Idempotency = "idempotent"
 	IdempotencyNonIdempotent Idempotency = "non_idempotent"
+	IdempotencyConditional   Idempotency = "conditional"
+	IdempotencyUnknownText   Idempotency = "unknown"
 )
 
 // Idempotencies returns the stable operation idempotency vocabulary.
 func Idempotencies() []Idempotency {
-	return []Idempotency{IdempotencyUnknown, IdempotencyIdempotent, IdempotencyNonIdempotent}
+	return []Idempotency{IdempotencyUnknown, IdempotencyIdempotent, IdempotencyNonIdempotent, IdempotencyConditional, IdempotencyUnknownText}
 }
 
 // RiskLevel is a coarse declaration used by runtime policy and approval gates.
 type RiskLevel string
 
 const (
-	RiskUnknown  RiskLevel = ""
-	RiskLow      RiskLevel = "low"
-	RiskMedium   RiskLevel = "medium"
-	RiskHigh     RiskLevel = "high"
-	RiskCritical RiskLevel = "critical"
+	RiskUnknown     RiskLevel = ""
+	RiskLow         RiskLevel = "low"
+	RiskMedium      RiskLevel = "medium"
+	RiskHigh        RiskLevel = "high"
+	RiskCritical    RiskLevel = "critical"
+	RiskDestructive RiskLevel = "destructive"
 )
 
 // RiskLevels returns the stable operation risk vocabulary.
 func RiskLevels() []RiskLevel {
-	return []RiskLevel{RiskUnknown, RiskLow, RiskMedium, RiskHigh, RiskCritical}
+	return []RiskLevel{RiskUnknown, RiskLow, RiskMedium, RiskHigh, RiskCritical, RiskDestructive}
 }
 
 // ParseRiskLevel parses a textual operation risk level.
@@ -64,8 +67,10 @@ func ParseRiskLevel(value string) (RiskLevel, error) {
 		return RiskHigh, nil
 	case string(RiskCritical):
 		return RiskCritical, nil
+	case string(RiskDestructive):
+		return RiskDestructive, nil
 	default:
-		return RiskUnknown, fmt.Errorf("invalid risk level %q: want low, medium, high, or critical", value)
+		return RiskUnknown, fmt.Errorf("invalid risk level %q: want low, medium, high, critical, or destructive", value)
 	}
 }
 

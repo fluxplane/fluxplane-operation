@@ -5,26 +5,26 @@ import (
 	"testing"
 )
 
-func TestPluginSpecJSON(t *testing.T) {
-	spec := PluginSpec{
+func TestDeclarationJSON(t *testing.T) {
+	spec := Declaration{
 		Name:        "test.write",
 		Description: "Write something",
 		ReadOnly:    false,
-		Effects:     []PluginEffect{PluginEffectWrite, PluginEffectNetwork},
-		Risk:        PluginRiskHigh,
-		Idempotency: PluginNonIdempotent,
+		Effects:     []Effect{EffectWrite, EffectNetwork},
+		Risk:        RiskHigh,
+		Idempotency: IdempotencyNonIdempotent,
 		Access:      []Access{AccessNetwork},
-		Render:      &PluginRenderSpec{Preferred: "json", Formats: []string{"json"}},
+		Render:      &RenderSpec{Preferred: "json", Formats: []string{"json"}},
 	}
 	raw, err := json.Marshal(spec)
 	if err != nil {
 		t.Fatalf("Marshal: %v", err)
 	}
-	var decoded PluginSpec
+	var decoded Declaration
 	if err := json.Unmarshal(raw, &decoded); err != nil {
 		t.Fatalf("Unmarshal: %v", err)
 	}
-	if decoded.Name != spec.Name || decoded.Risk != PluginRiskHigh || decoded.Access[0] != AccessNetwork {
+	if decoded.Name != spec.Name || decoded.Risk != RiskHigh || decoded.Access[0] != AccessNetwork {
 		t.Fatalf("decoded = %#v", decoded)
 	}
 }
