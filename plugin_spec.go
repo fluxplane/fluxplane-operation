@@ -1,10 +1,6 @@
 package operation
 
-import (
-	"encoding/json"
-
-	datasource "github.com/fluxplane/fluxplane-datasource"
-)
+import "encoding/json"
 
 // Declaration is the JSON manifest shape for an operation exposed by an SDK,
 // runtime, or external provider. It is intentionally runtime-neutral.
@@ -35,18 +31,18 @@ const (
 )
 
 // Access describes one external capability or privilege an operation requires.
-type Access = datasource.Access
+type Access string
 
 const (
-	AccessNone        = datasource.AccessNone
-	AccessAuth        = datasource.AccessAuth
-	AccessSecret      = datasource.AccessSecret
-	AccessNetwork     = datasource.AccessNetwork
-	AccessProvider    = datasource.AccessProvider
-	AccessProcess     = datasource.AccessProcess
-	AccessBrowser     = datasource.AccessBrowser
-	AccessFilesystem  = datasource.AccessFilesystem
-	AccessLocalSystem = datasource.AccessLocalSystem
+	AccessNone        Access = "none"
+	AccessAuth        Access = "auth"
+	AccessSecret      Access = "secret"
+	AccessNetwork     Access = "network"
+	AccessProvider    Access = "provider"
+	AccessProcess     Access = "process"
+	AccessBrowser     Access = "browser"
+	AccessFilesystem  Access = "filesystem"
+	AccessLocalSystem Access = "local_system"
 )
 
 // RenderSpec declares preferred render formats for operation output.
